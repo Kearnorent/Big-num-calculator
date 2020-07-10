@@ -27,7 +27,6 @@ int main (int argc, char *argv[])
 
     /// Lexing
     std::vector<lexer::t_token> tokens = lexer::lex(operation);
-
     /// AST Building
     std::shared_ptr<parser::t_ast> ast = parser::parse(tokens, error_msg);
     /// Parsing error
@@ -36,17 +35,12 @@ int main (int argc, char *argv[])
         std::cout << "[Parsing Error] " << error_msg << std::endl;
         return 1;
     }
-    parser::pretty_print_ast(ast, 0, 10);
-
-    //std::shared_ptr<parser::t_ast> ast = std::make_shared<parser::t_ast>(lexer::t_token("/", OPERATOR));
-    //ast->left = std::make_shared<parser::t_ast>(lexer::t_token("21", NUMBER));
-    //ast->right = std::make_shared<parser::t_ast>(lexer::t_token("16", NUMBER));
 
     /// AST Visiting
     visiter::visit(ast);
 
-
     /// FIXME Logging to delete
+    //parser::pretty_print_ast(ast, 0, 10);
     //std::cout << std::endl;
     //lexer::pretty_print_tokens(tokens);
     //std::cout << std::endl << operation << std::endl;

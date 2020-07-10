@@ -36,15 +36,9 @@ std::string operator_type_to_string (const operator_type& type)
 
 int operator_type_to_int(const operator_type& type)
 {
-    if (type == PLUS)
+    if (type == PLUS or type == MINUS)
         return 1;
-    else if (type == MINUS)
-        return 1;
-    else if (type == MULT)
-        return 2;
-    else if (type == DIV)
-        return 2;
-    else if (type == MOD)
+    else if (type == MULT or type == DIV or type == MOD)
         return 2;
     else if (type == POW)
         return 3;

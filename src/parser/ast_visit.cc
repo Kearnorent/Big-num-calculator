@@ -7,14 +7,12 @@ namespace visiter
         while (ast->left != nullptr and ast->right != nullptr)
         {
             loop_through(ast);
-            //parser::pretty_print_ast(ast, 0, 10);
         }
     }
 
     std::string calculate (const std::string& operation, const std::string& op1, const std::string& op2)
     {
         // FIXME for very large numbers
-
         int num1 = std::stoi(op1);
         int num2 = std::stoi(op2);
         if (operation == "+")
@@ -27,9 +25,8 @@ namespace visiter
             return std::to_string(num1 / num2);
         else if (operation == "%")
             return std::to_string(num1 % num2);
-        // FIXME When I'll handle 'power' calculations.
         else if (operation == "^")
-            return std::to_string(num1 / num2);
+            return std::to_string(std::pow(num1, num2));
         return "";
     }
 
