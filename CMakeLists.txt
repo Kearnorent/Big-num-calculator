@@ -9,7 +9,9 @@ include_directories(src/)
 
 #List of source files
 set(SRC_FILES
-        src/main.cc)
+        src/main.cc
+        src/utils/input_error.cc
+        src/utils/string_op.cc)
 
 # Compilation flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra -pedantic -std=c++17")
