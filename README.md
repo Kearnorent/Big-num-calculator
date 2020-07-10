@@ -1,6 +1,10 @@
 ### Calculator for very large numbers
 
     Supporting '+', '-', '*', '/', '^', '%' operations.
+ 
+### Build the project
+
+    mkdir build && cd build && cmake .. && make -j10
     
 ### Usage
 
