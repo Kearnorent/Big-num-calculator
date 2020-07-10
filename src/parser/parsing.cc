@@ -35,73 +35,60 @@ namespace parser
             else if (tokens[i].get_type() == OPERATOR)
                 operator_stack.push_back(guess_operator_type(tokens[i].get_value()));
 
-            /// Update the stacks after added elements to them
-            update_the_stacks(operator_stack, operand_stack);
-
             /// Update the state
             state = tokens[i].get_type();
         }
 
-        /// Loop until the operator stack is empty
-        while (not operator_stack.empty())
+        int prio = 3;
+        while (prio > 0)
         {
-            update_the_stacks(operator_stack, operand_stack);
-            if (operator_stack.size() == 1 and operand_stack.size() == 2)
-            {
-                std::shared_ptr<t_ast> cur = std::make_shared<t_ast>(lexer::t_token(operator_type_to_string(operator_stack[0]), OPERATOR));
-                cur->left = operand_stack[0];
-                cur->right = operand_stack[1];
-                operand_stack.clear();
-                operand_stack.push_back(cur);
-                operator_stack.clear();
+            if (prio == 3) {
+                int i = operator_stack.size() - 1;
+                while (i >= 0)
+                {
+                    if (operator_type_to_int(operator_stack[i]) == prio)
+                    {
+                        std::shared_ptr<t_ast> cur =
+                                std::make_shared<t_ast>(lexer::t_token(operator_type_to_string(operator_stack[i]), OPERATOR));
+                        cur->left = operand_stack[i];
+                        cur->right = operand_stack[i + 1];
+                        /// Erase outdated elements
+                        operand_stack.erase(operand_stack.begin() + i);
+                        operator_stack.erase(operator_stack.begin() + i);
+                        ///
+                        operand_stack[i] = cur;
+                        i--;
+                    }
+                    else
+                        i--;
+                }
             }
+            else
+            {
+                size_t i = 0;
+                while (i < operator_stack.size())
+                {
+                    if (operator_type_to_int(operator_stack[i]) == prio)
+                    {
+                        std::shared_ptr<t_ast> cur =
+                                std::make_shared<t_ast>(lexer::t_token(operator_type_to_string(operator_stack[i]), OPERATOR));
+                        cur->left = operand_stack[i];
+                        cur->right = operand_stack[i + 1];
+                        /// Erase outdated elements
+                        operand_stack.erase(operand_stack.begin() + i);
+                        operator_stack.erase(operator_stack.begin() + i);
+                        ///
+                        operand_stack[i] = cur;
+                    }
+                    else
+                        i++;
+                }
+            }
+            prio--;
         }
 
         if (not operand_stack.empty())
             return operand_stack[0];
         return nullptr;
-    }
-
-    void update_the_stacks (std::vector<operator_type>& operator_stack, std::vector<std::shared_ptr<t_ast>>& operand_stack)
-    {
-        if (not operator_stack.empty())
-        {
-            operator_type top_operator_elm = operator_stack[operator_stack.size() - 1];
-            if (is_operator_max_prio(top_operator_elm) and operator_stack.size() + 1 == operand_stack.size())
-            {
-                std::shared_ptr<t_ast> cur = std::make_shared<t_ast>(lexer::t_token(operator_type_to_string(top_operator_elm), OPERATOR));
-                cur->left = operand_stack[operand_stack.size() - 2];
-                cur->right = operand_stack[operand_stack.size() - 1];
-                /// Erase outdated elements
-                operand_stack.erase(operand_stack.end() - 1);
-                operand_stack.erase(operand_stack.end() - 1);
-                operator_stack.erase(operator_stack.end() - 1);
-                /// Update operand stack
-                operand_stack.push_back(cur);
-            }
-            else if (operator_stack.size() > 1
-            and compare_priorities(operator_stack[0], operator_stack[1]) >= 0)
-            {
-                std::shared_ptr<t_ast> cur = std::make_shared<t_ast>(lexer::t_token(operator_type_to_string(operator_stack[0]), OPERATOR));
-                cur->left = operand_stack[0];
-                cur->right = operand_stack[1];
-                /// Erase outdated elements
-                operand_stack.erase(operand_stack.begin());
-                operator_stack.erase(operator_stack.begin());
-                /// Update operand stack
-                operand_stack[0] = cur;
-            }
-        }
-    }
-
-    bool is_operator_max_prio (const operator_type& type)
-    {
-        /// FIXME
-        return type == MULT or type == DIV or type == MOD;
-    }
-
-    int compare_priorities (operator_type type1, operator_type type2)
-    {
-        return operator_type_to_int(type1) - operator_type_to_int(type2);
     }
 }

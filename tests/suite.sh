@@ -48,7 +48,8 @@ cmp_results ()
     test_name=$1
     op=$2
     mine=$(./../build/calc "$op")
-    expected=$(($op))
+    op2=$(echo "$op" | sed -r 's/[\^]+/**/g')
+    expected=$(($op2))
     if [[ "$mine" == *"$expected"* ]]; then
         echo -e "$green[OK]""$cyan""[$test_name] "
         tests_passed=$((tests_passed + 1))
@@ -77,6 +78,10 @@ fi
 # Modulo tests
 if is_argument "$*" "$#" "mod"; then
     . scripts_test/mod_test.sh
+fi
+# Power tests
+if is_argument "$*" "$#" "pow"; then
+    . scripts_test/pow_test.sh
 fi
 # Hard/Mixed tests
 if is_argument "$*" "$#" "mixed"; then
