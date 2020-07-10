@@ -6,5 +6,5 @@
 
 # Directories
 
-build/
+*build*
 .idea/
