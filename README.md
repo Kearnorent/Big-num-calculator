@@ -1,8 +1,8 @@
-###Calculator for very large numbers
+### Calculator for very large numbers
 
     Supporting '+', '-', '*', '/', '^', '%' operations.
     
-###Usage
+### Usage
 
     Interactive Mode,
     ./calc -i
