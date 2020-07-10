@@ -18,7 +18,10 @@ set(SRC_FILES
         src/lexer/token_type.cc
 
         # Parser files
+        src/parser/parsing.cc
+        src/parser/ast_visit.cc
         src/parser/ast.cc
+        src/parser/operator_type.cc
 
         # Utils files
         src/utils/input_error.cc

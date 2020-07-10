@@ -3,6 +3,8 @@
 
 #include "lexer/lexing.hh"
 #include "lexer/token.hh"
+#include "parser/parsing.hh"
+#include "parser/ast_visit.hh"
 #include "parser/ast.hh"
 #include "utils/input_error.hh"
 #include "utils/string_op.hh"
@@ -27,14 +29,30 @@ int main (int argc, char *argv[])
     std::vector<lexer::t_token> tokens = lexer::lex(operation);
 
     /// AST Building
-    std::shared_ptr<parser::t_ast> ast = std::make_shared<parser::t_ast>(lexer::t_token("/", OPERATOR));
-    ast->left = std::make_shared<parser::t_ast>(lexer::t_token("21", NUMBER));
-    ast->right = std::make_shared<parser::t_ast>(lexer::t_token("16", NUMBER));
+    std::shared_ptr<parser::t_ast> ast = parser::parse(tokens, error_msg);
+    /// Parsing error
+    if (not ast)
+    {
+        std::cout << "[Parsing Error] " << error_msg << std::endl;
+        return 1;
+    }
+    parser::pretty_print_ast(ast, 0, 10);
+
+    //std::shared_ptr<parser::t_ast> ast = std::make_shared<parser::t_ast>(lexer::t_token("/", OPERATOR));
+    //ast->left = std::make_shared<parser::t_ast>(lexer::t_token("21", NUMBER));
+    //ast->right = std::make_shared<parser::t_ast>(lexer::t_token("16", NUMBER));
+
+    /// AST Visiting
+    visiter::visit(ast);
+
 
     /// FIXME Logging to delete
-    parser::pretty_print_ast(ast, 0, 10);
+    //std::cout << std::endl;
     //lexer::pretty_print_tokens(tokens);
-    std::cout << std::endl << operation << std::endl;
+    //std::cout << std::endl << operation << std::endl;
+
+    /// Final logging
+    std::cout << "The result is : " << ast->get_token().get_value() << std::endl;
 
     return 0;
 }

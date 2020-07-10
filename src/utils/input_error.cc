@@ -19,7 +19,7 @@ bool is_valid_operation (const char* param, std::string& error_msg)
 
 bool is_number(const char& cur)
 {
-    if (cur <= '0' or cur >= '9')
+    if (cur < '0' or cur > '9')
         return false;
     return true;
 }
