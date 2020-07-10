@@ -8,45 +8,67 @@
 #include "parser/ast.hh"
 #include "utils/input_error.hh"
 #include "utils/string_op.hh"
+#include "utils/options.hh"
 
 int main (int argc, char *argv[])
 {
+    Options options(argc, argv);
     /// Input error handling
     std::string error_msg;
-    if (argc != 2 or not is_valid_operation(argv[1], error_msg))
+    if (argc > 3 or not is_valid_operation(options.operation.c_str(), error_msg))
     {
         std::cout << "[Input Error] " << error_msg << std::endl;
         return 1;
     }
 
-    /// The operation string
-    std::string operation = argv[1];
-
-    /// Remove useless characters (spaces, ...)
-    remove_useless_characters(operation);
-
-    /// Lexing
-    std::vector<lexer::t_token> tokens = lexer::lex(operation);
-    /// AST Building
-    std::shared_ptr<parser::t_ast> ast = parser::parse(tokens, error_msg);
-    /// Parsing error
-    if (not ast)
+    while (true)
     {
-        std::cout << "[Parsing Error] " << error_msg << std::endl;
-        return 1;
+        std::string operation;
+        if (options.interactive)
+        {
+            std::getline (std::cin, operation);
+            if (operation == "quit" or operation == "stop")
+                break;
+        }
+        else
+        {
+            /// The operation string
+            operation = options.operation;
+        }
+
+        /// Remove useless characters (spaces, ...)
+        remove_useless_characters(operation);
+
+        /// Lexing
+        std::vector<lexer::t_token> tokens = lexer::lex(operation);
+        /// AST Building
+        std::shared_ptr<parser::t_ast> ast = parser::parse(tokens, error_msg);
+        /// Parsing error
+        if (not ast)
+        {
+            std::cout << "[Parsing Error] " << error_msg << std::endl;
+            if (not options.interactive)
+                return 1;
+            else
+                continue;
+        }
+
+        /// AST Visiting
+        visiter::visit(ast);
+
+        /// FIXME Logging to delete
+        //parser::pretty_print_ast(ast, 0, 10);
+        //std::cout << std::endl;
+        //lexer::pretty_print_tokens(tokens);
+        //std::cout << std::endl << operation << std::endl;
+
+        /// Final logging
+        std::cout << "\033[1;36m" << "= " << ast->get_token().get_value() << "\033[0m" << std::endl;
+
+
+        if (not options.interactive)
+            break;
     }
-
-    /// AST Visiting
-    visiter::visit(ast);
-
-    /// FIXME Logging to delete
-    //parser::pretty_print_ast(ast, 0, 10);
-    //std::cout << std::endl;
-    //lexer::pretty_print_tokens(tokens);
-    //std::cout << std::endl << operation << std::endl;
-
-    /// Final logging
-    std::cout << "The result is : " << ast->get_token().get_value() << std::endl;
 
     return 0;
 }

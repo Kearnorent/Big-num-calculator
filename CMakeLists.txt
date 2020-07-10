@@ -26,6 +26,7 @@ set(SRC_FILES
         # Utils files
         src/utils/input_error.cc
         src/utils/string_op.cc
+        src/utils/options.cc
     )
 
 # Compilation flags
