@@ -27,8 +27,11 @@ int main (int argc, char *argv[])
         if (options.interactive)
         {
             std::getline (std::cin, operation);
-            if (operation == "quit" or operation == "stop")
+            if (operation == "q" or operation == "quit" or operation == "stop")
+            {
+                std::cout << "Quitting\n";
                 break;
+            }
         }
         else
         {
@@ -57,14 +60,12 @@ int main (int argc, char *argv[])
         visiter::visit(ast);
 
         /// FIXME Logging to delete
-        //parser::pretty_print_ast(ast, 0, 10);
-        //std::cout << std::endl;
-        //lexer::pretty_print_tokens(tokens);
-        //std::cout << std::endl << operation << std::endl;
+        /*parser::pretty_print_ast(ast, 0, 10);
+        lexer::pretty_print_tokens(tokens);
+        std::cout << operation << std::endl;*/
 
         /// Final logging
         std::cout << "\033[1;36m" << "= " << ast->get_token().get_value() << "\033[0m" << std::endl;
-
 
         if (not options.interactive)
             break;
