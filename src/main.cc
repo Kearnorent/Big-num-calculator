@@ -26,9 +26,15 @@ int main (int argc, char *argv[])
     /// Lexing
     std::vector<lexer::t_token> tokens = lexer::lex(operation);
 
+    /// AST Building
+    std::shared_ptr<parser::t_ast> ast = std::make_shared<parser::t_ast>(lexer::t_token("/", OPERATOR));
+    ast->left = std::make_shared<parser::t_ast>(lexer::t_token("21", NUMBER));
+    ast->right = std::make_shared<parser::t_ast>(lexer::t_token("16", NUMBER));
+
     /// FIXME Logging to delete
-    lexer::pretty_print_tokens(tokens);
-    std::cout << operation << std::endl;
+    parser::pretty_print_ast(ast, 0, 10);
+    //lexer::pretty_print_tokens(tokens);
+    std::cout << std::endl << operation << std::endl;
 
     return 0;
 }
