@@ -6,7 +6,8 @@ bool is_valid_operation (const char* param, std::string& error_msg)
     {
         if (not is_number(param[i])
         and not is_operator(param[i])
-        and not is_whitespace(param[i]))
+        and not is_whitespace(param[i])
+        and not is_parenthesis(param[i]))
         {
             std::string cur_char = std::string(1, param[i]);
             error_msg = "Not valid character : \'" + cur_char + "\'";
@@ -30,9 +31,16 @@ bool is_whitespace(const char& cur)
     return false;
 }
 
+bool is_parenthesis(const char& cur)
+{
+    if (cur == '(' or cur == ')')
+        return true;
+    return false;
+}
+
 bool is_operator(const char& cur)
 {
-    char op[] = {'+', '-', '/', '*', '%','^', '(', ')', '\0'};
+    char op[] = {'+', '-', '/', '*', '%', '^', '\0'};
     for (int i = 0; op[i]; ++i)
     {
         if (cur == op[i])

@@ -23,6 +23,12 @@ bool is_whitespace(const char& cur);
 
 /**
  * @param cur               A character.
+ * @return                  True if 'cur' is a parenthesis character, False otherwise.
+ */
+bool is_parenthesis(const char& cur);
+
+/**
+ * @param cur               A character.
  * @return                  True if 'cur' is an operator character, False otherwise.
  */
 bool is_operator(const char& cur);
