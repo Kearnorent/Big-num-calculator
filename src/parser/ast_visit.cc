@@ -13,20 +13,27 @@ namespace visiter
     std::string calculate (const std::string& operation, const std::string& op1, const std::string& op2)
     {
         // FIXME for very large numbers
+
         int num1 = std::stoi(op1);
         int num2 = std::stoi(op2);
         if (operation == "+")
             return std::to_string(num1 + num2);
+            //return operations::addition(op1, op2);
         else if (operation == "-")
             return std::to_string(num1 - num2);
+            //return operations::subtraction(op1, op2);
         else if (operation == "*")
             return std::to_string(num1 * num2);
+            //return operations::multiplication(op1, op2);
         else if (operation == "/")
             return std::to_string(num1 / num2);
+            //return operations::division(op1, op2);
         else if (operation == "%")
             return std::to_string(num1 % num2);
+            //return operations::modulo(op1, op2);
         else if (operation == "^")
             return std::to_string(std::pow(num1, num2));
+            //return operations::power(op1, op2);
         return "";
     }
 

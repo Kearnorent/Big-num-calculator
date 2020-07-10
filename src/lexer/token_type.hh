@@ -11,4 +11,8 @@ enum tok_type
     RIGHT_PAR,
 };
 
+/**
+ * @param type
+ * @return
+ */
 std::string tok_type_to_string (const tok_type& type);

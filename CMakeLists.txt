@@ -23,6 +23,14 @@ set(SRC_FILES
         src/parser/ast.cc
         src/parser/operator_type.cc
 
+        # Operations files
+        src/operations/add.cc
+        src/operations/sub.cc
+        src/operations/mul.cc
+        src/operations/div.cc
+        src/operations/mod.cc
+        src/operations/pow.cc
+
         # Utils files
         src/utils/input_error.cc
         src/utils/string_op.cc

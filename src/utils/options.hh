@@ -6,6 +6,10 @@
 class Options
 {
 public:
+    /**
+     * @param argc
+     * @param argv
+     */
     Options(int argc, char *argv[]);
 
     std::string operation;

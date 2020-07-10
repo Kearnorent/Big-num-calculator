@@ -6,3 +6,5 @@
 ### Large numbers operations :
     
     rewrite every operation between arrays of numbers
+    
+### Fill doxygen fields in most methods/functions declarations

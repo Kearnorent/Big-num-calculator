@@ -12,10 +12,12 @@ namespace parser
     public:
         t_ast() = default;
 
+        /**
+         * @param tok
+         */
         t_ast(const lexer::t_token& tok);
 
         lexer::t_token get_token() { return token; }
-
         void set_token (const lexer::t_token& tok) { token = tok; }
 
         /// Public attributes.

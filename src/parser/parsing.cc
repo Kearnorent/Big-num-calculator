@@ -4,27 +4,6 @@
 
 namespace parser
 {
-    std::vector<lexer::t_token> get_tokens_between_pars(std::vector<lexer::t_token>& tokens, size_t ind, size_t& shift)
-    {
-        int count_op = 1;
-        int count_cl = 0;
-        size_t i = ind;
-        std::vector<lexer::t_token> res;
-        while (i < tokens.size())
-        {
-            if (tokens[i].get_type() == LEFT_PAR)
-                count_op += 1;
-            else if (tokens[i].get_type() == RIGHT_PAR)
-                count_cl += 1;
-            if (count_cl == count_op)
-                break;
-            res.push_back(tokens[i]);
-            i++;
-        }
-        shift = i;
-        return res;
-    }
-
     std::shared_ptr<t_ast> parse (std::vector<lexer::t_token>& tokens, std::string& error_msg)
     {
         std::vector<operator_type> operator_stack;
@@ -125,4 +104,26 @@ namespace parser
             return operand_stack[0];
         return nullptr;
     }
+
+    std::vector<lexer::t_token> get_tokens_between_pars(std::vector<lexer::t_token>& tokens, size_t ind, size_t& shift)
+    {
+        int count_op = 1;
+        int count_cl = 0;
+        size_t i = ind;
+        std::vector<lexer::t_token> res;
+        while (i < tokens.size())
+        {
+            if (tokens[i].get_type() == LEFT_PAR)
+                count_op += 1;
+            else if (tokens[i].get_type() == RIGHT_PAR)
+                count_cl += 1;
+            if (count_cl == count_op)
+                break;
+            res.push_back(tokens[i]);
+            i++;
+        }
+        shift = i;
+        return res;
+    }
+
 }
