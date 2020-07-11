@@ -12,3 +12,8 @@ void remove_useless_characters (std::string& str);
  * @param str
  */
 void add_zeroes (std::string& str);
+
+/**
+ * @param str
+ */
+void remove_zeroes (std::string& str);

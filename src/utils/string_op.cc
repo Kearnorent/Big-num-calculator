@@ -33,3 +33,24 @@ void add_zeroes (std::string& str)
     }
     str = new_string;
 }
+
+void remove_zeroes (std::string& str)
+{
+    if (str.size() == 1)
+        return;
+    std::string new_string;
+    int hit = 0;
+    for (int i = 0; str[i]; ++i)
+    {
+        if (str[i] == '-')
+        {
+            new_string += str[i];
+            continue;
+        }
+        if (str[i] >= '1' and str[i] <= '9')
+            hit = 1;
+        if (hit == 1)
+            new_string += str[i];
+    }
+    str = new_string;
+}

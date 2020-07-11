@@ -68,7 +68,9 @@ int main (int argc, char *argv[])
         std::cout << operation << std::endl;*/
 
         /// Final logging
-        std::cout << "\033[1;36m" << "= " << ast->get_token().get_value() << "\033[0m" << std::endl;
+        std::string result = ast->get_token().get_value();
+        remove_zeroes(result);
+        std::cout << "\033[1;36m" << "= " << result << "\033[0m" << std::endl;
 
         if (not options.interactive)
             break;

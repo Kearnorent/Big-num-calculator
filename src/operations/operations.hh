@@ -1,6 +1,9 @@
 #pragma once
 
+#include <iostream>
 #include <string>
+
+#include "parser/ast_visit.hh"
 
 namespace operations
 {

@@ -10,15 +10,33 @@ namespace visiter
         }
     }
 
-    std::string calculate (const std::string& operation, const std::string& op1, const std::string& op2)
+    std::string calculate (const std::string& operation, std::string op1, std::string op2)
     {
-        // FIXME for very large numbers
-
+        /// Add zeroes at the start of op1 or op2 to make them the same size
+        int count = 0;
+        std::string zeroes;
+        if (op1.size() < op2.size())
+        {
+            while (op1.size() + count < op2.size())
+            {
+                count += 1;
+                zeroes += '0';
+            }
+            op1 = zeroes + op1;
+        }
+        else if (op1.size() > op2.size())
+        {while (op2.size() + count < op1.size())
+            {
+                count += 1;
+                zeroes += '0';
+            }
+            op2 = zeroes + op2;
+        }
         int num1 = std::stoi(op1);
         int num2 = std::stoi(op2);
         if (operation == "+")
-            return std::to_string(num1 + num2);
-            //return operations::addition(op1, op2);
+            //return std::to_string(num1 + num2);
+            return operations::addition(op1, op2);
         else if (operation == "-")
             return std::to_string(num1 - num2);
             //return operations::subtraction(op1, op2);
@@ -32,7 +50,7 @@ namespace visiter
             return std::to_string(num1 % num2);
             //return operations::modulo(op1, op2);
         else if (operation == "^")
-            return std::to_string(std::pow(num1, num2));
+            return std::to_string((int) std::pow(num1, num2));
             //return operations::power(op1, op2);
         return "";
     }

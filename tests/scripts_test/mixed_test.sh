@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cmp_results "simple mixed" "1+1-2"
+cmp_results "simple mixed" "1+1+-2"
 cmp_results "medium mixed" "1+2+3^2-2+2-100"
 cmp_results "long mixed" "1+2*3+4/5+6%2-2+1*2%2^2/2+1/2"
 cmp_results "spaced mixed" "8  / 3 +1 - 1 * 2"

@@ -19,7 +19,7 @@ namespace visiter
      * @param op2
      * @return
      */
-    std::string calculate (const std::string& operation, const std::string& op1, const std::string& op2);
+    std::string calculate (const std::string& operation, std::string op1, std::string op2);
 
     /**
      * @param ast
