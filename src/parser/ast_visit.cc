@@ -22,24 +22,30 @@ namespace visiter
                 count += 1;
                 zeroes += '0';
             }
-            op1 = zeroes + op1;
+            if (op2[0] == '-')
+                op1 = zeroes.substr(1) + op1;
+            else
+                op1 = zeroes + op1;
         }
         else if (op1.size() > op2.size())
-        {while (op2.size() + count < op1.size())
+        {
+            while (op2.size() + count < op1.size())
             {
                 count += 1;
                 zeroes += '0';
             }
-            op2 = zeroes + op2;
+            if (op1[0] == '-')
+                op2 = zeroes.substr(1) + op2;
+            else
+                op2 = zeroes + op2;
         }
         int num1 = std::stoi(op1);
         int num2 = std::stoi(op2);
         if (operation == "+")
-            //return std::to_string(num1 + num2);
             return operations::addition(op1, op2);
         else if (operation == "-")
-            return std::to_string(num1 - num2);
-            //return operations::subtraction(op1, op2);
+            //return std::to_string(num1 - num2);
+            return operations::subtraction(op1, op2);
         else if (operation == "*")
             return std::to_string(num1 * num2);
             //return operations::multiplication(op1, op2);
