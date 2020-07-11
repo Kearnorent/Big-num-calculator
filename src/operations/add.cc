@@ -10,15 +10,15 @@ namespace operations
         else if (n2[0] == '-')
             return visiter::calculate("-", n1, n2.substr(1));
 
-        std::string res(n1.size() + 1, ' ');
+        std::string res;
         int retenue = 0;
         for (int i = n1.size() - 1; i >= 0; --i)
         {
             int cur = (n1[i] - '0') + (n2[i] - '0');
-            res[i + 1] = (cur + retenue) % base + '0';
+            res.insert(0, std::to_string((cur + retenue) % base));
             retenue = (cur + retenue) / base;
         }
-        res[0] = retenue + '0';
+        res.insert(0, std::to_string(retenue));
         return res;
     }
 }

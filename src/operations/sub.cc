@@ -17,9 +17,10 @@ namespace operations
             n1 = n2;
             n2 = swp;
         }
+
         if (n1.compare(n2) < 0)
-            return "-" + subtraction(n2, n1, base);
-        std::string res(n1.size(), ' ');
+            return "-" + visiter::calculate("-", n2, n1);
+        std::string res;
         int retenue = 0;
         for (int i = n1.size() - 1; i >= 0; --i)
         {
@@ -28,12 +29,12 @@ namespace operations
             if (dig1 >= dig2)
             {
                 retenue = 0;
-                res[i] = (dig1 - dig2) + '0';
+                res.insert(0, std::to_string(dig1 - dig2));
             }
             else
             {
                 retenue = 1;
-                res[i] = ((dig1 + base) - dig2) + '0';
+                res.insert(0, std::to_string((dig1 + base) - dig2));
             }
         }
         return res;

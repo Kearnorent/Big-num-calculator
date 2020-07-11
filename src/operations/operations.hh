@@ -4,6 +4,7 @@
 #include <string>
 
 #include "parser/ast_visit.hh"
+#include "utils/string_op.hh"
 
 namespace operations
 {
