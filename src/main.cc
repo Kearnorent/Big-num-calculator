@@ -42,6 +42,9 @@ int main (int argc, char *argv[])
         /// Remove useless characters (spaces, ...)
         remove_useless_characters(operation);
 
+        /// Puts 0 before negative numbers to make it easier later on
+        add_zeroes(operation);
+
         /// Lexing
         std::vector<lexer::t_token> tokens = lexer::lex(operation);
         /// AST Building
