@@ -74,8 +74,8 @@ int main (int argc, char *argv[])
 
         /// Logging
         if (options.verbose) {
-            //parser::pretty_print_ast(ast, 0, 5);
             parser::pretty_print_ast2(ast, 80);
+            //parser::pretty_print_ast(ast, 0, 5);
             /*lexer::pretty_print_tokens(tokens);
             std::cout << operation << std::endl;*/
         }

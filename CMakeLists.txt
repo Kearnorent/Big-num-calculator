@@ -43,3 +43,8 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Ofast -march=native")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -g3")
 
 add_executable(calc ${SRC_FILES})
+
+# To run the testsuite
+add_custom_target(check COMMAND cd ../tests && ./suite.sh && cd - > /dev/null)
+add_custom_target(tests COMMAND cd ../tests && ./suite.sh && cd - > /dev/null)
+add_custom_target(test COMMAND cd ../tests && ./suite.sh && cd - > /dev/null)
