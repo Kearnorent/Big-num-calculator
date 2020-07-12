@@ -39,8 +39,7 @@ namespace visiter
             else
                 op2 = zeroes + op2;
         }
-        int num1 = std::stoi(op1);
-        int num2 = std::stoi(op2);
+
         if (operation == "+")
             return operations::addition(op1, op2);
         else if (operation == "-")
@@ -48,14 +47,11 @@ namespace visiter
         else if (operation == "*")
             return operations::multiplication(op1, op2);
         else if (operation == "/")
-            return std::to_string(num1 / num2);
-            //return operations::division(op1, op2);
+            return operations::division(op1, op2);
         else if (operation == "%")
-            return std::to_string(num1 % num2);
-            //return operations::modulo(op1, op2);
+            return operations::modulo(op1, op2);
         else if (operation == "^")
-            return std::to_string((int) std::pow(num1, num2));
-            //return operations::power(op1, op2);
+            return operations::power(op1, op2);
         return "";
     }
 

@@ -52,5 +52,7 @@ void remove_zeroes (std::string& str)
         if (hit == 1)
             new_string += str[i];
     }
+    if (new_string.size() == 0)
+        new_string = "0";
     str = new_string;
 }
