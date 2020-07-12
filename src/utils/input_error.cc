@@ -4,13 +4,26 @@ bool is_valid_operation (const char* param, std::string& error_msg)
 {
     for (size_t i = 0; param[i]; ++i)
     {
-        if (not is_number(param[i])
-        and not is_operator(param[i])
-        and not is_whitespace(param[i])
-        and not is_parenthesis(param[i]))
+        if (not is_number(param[i]) and not is_operator(param[i])
+        and not is_whitespace(param[i]) and not is_parenthesis(param[i]))
         {
             std::string cur_char = std::string(1, param[i]);
             error_msg = "Not valid character : \'" + cur_char + "\'";
+            return false;
+        }
+    }
+    return true;
+}
+
+bool is_valid_base (const char* param, std::string& error_msg)
+{
+    for (size_t i = 0; param[i]; ++i)
+    {
+        if (not is_whitespace(param[i]) and not is_operator(param[i])
+        and not is_parenthesis(param[i]) and param[i] - '0' >= base)
+        {
+            std::string cur_char = std::string(1, param[i]);
+            error_msg = "Not valid character : \'" + cur_char + "\' in base : " + std::to_string(base);
             return false;
         }
     }

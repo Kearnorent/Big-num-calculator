@@ -15,10 +15,13 @@ int base = 10;
 
 int main (int argc, char *argv[])
 {
+    /// Options parsing
     Options options(argc, argv);
+    base = options.base;
+
     /// Input error handling
     std::string error_msg;
-    if (argc > 3 or not is_valid_operation(options.operation.c_str(), error_msg))
+    if (not is_valid_operation(options.operation.c_str(), error_msg))
     {
         std::cout << "[Input Error] " << error_msg << std::endl;
         return 1;
@@ -41,7 +44,14 @@ int main (int argc, char *argv[])
             /// The operation string
             operation = options.operation;
         }
-
+        if (not is_valid_base(operation.c_str(), error_msg))
+        {
+            std::cout << "[Input Error] " << error_msg << std::endl;
+            if (not options.interactive)
+                return 1;
+            else
+                continue;
+        }
         /// Remove useless characters (spaces, ...)
         remove_useless_characters(operation);
 

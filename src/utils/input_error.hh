@@ -3,11 +3,19 @@
 #include <cstddef>
 #include <string>
 
+#include "operations/operations.hh"
+
 /**
  * @param param             String given as parameter.
  * @return                  True if 'param' is a valid operation, False otherwise.
  */
 bool is_valid_operation (const char* param, std::string& error_msg);
+
+/**
+ * @param param             String given as parameter.
+ * @return                  True if 'param' is a valid base operation, False otherwise.
+ */
+bool is_valid_base (const char* param, std::string& error_msg);
 
 /**
  * @param cur               A character.

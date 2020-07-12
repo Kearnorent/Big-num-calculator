@@ -2,6 +2,7 @@
 
 #include <cstring>
 #include <string>
+#include <iostream>
 
 class Options
 {
@@ -15,4 +16,5 @@ public:
     std::string operation;
     bool interactive = false;
     bool verbose = false;
+    int base = 10;
 };
