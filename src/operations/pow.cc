@@ -2,9 +2,8 @@
 
 namespace operations
 {
-    std::string power(std::string n1, std::string n2, int base)
+    std::string power(std::string n1, std::string n2)
     {
-        base = base;
         std::string res = "1";
         std::string counter = "0";
         std::string cond;

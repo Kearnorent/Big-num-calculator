@@ -2,7 +2,7 @@
 
 namespace operations
 {
-    std::string subtraction(std::string n1, std::string n2, int base)
+    std::string subtraction(std::string n1, std::string n2)
     {
         /// Input cases
         if (n1[0] != '-' and n2[0] == '-')

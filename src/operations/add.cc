@@ -2,7 +2,7 @@
 
 namespace operations
 {
-    std::string addition(std::string n1, std::string n2, int base)
+    std::string addition(std::string n1, std::string n2)
     {
         /// Input cases
         if (n1[0] == '-')

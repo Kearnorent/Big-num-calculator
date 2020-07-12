@@ -10,6 +10,9 @@
 #include "utils/string_op.hh"
 #include "utils/options.hh"
 
+/// 'base' Global variable
+int base = 10;
+
 int main (int argc, char *argv[])
 {
     Options options(argc, argv);
