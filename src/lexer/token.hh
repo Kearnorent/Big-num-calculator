@@ -12,8 +12,8 @@ namespace lexer
         t_token () = default;
 
         /**
-         * @param val
-         * @param tok_type
+         * @param val                   String representing the contents of the token
+         * @param tok_type              The token's type
          */
         t_token (const std::string& val, const tok_type& tok_type);
 

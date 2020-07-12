@@ -12,7 +12,7 @@ enum tok_type
 };
 
 /**
- * @param type
- * @return
+ * @param type                  The token type
+ * @return                      The string matching the token type
  */
 std::string tok_type_to_string (const tok_type& type);

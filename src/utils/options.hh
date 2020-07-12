@@ -7,8 +7,8 @@ class Options
 {
 public:
     /**
-     * @param argc
-     * @param argv
+     * @param argc                      The number of program-given parameters
+     * @param argv                      The program-given parameters
      */
     Options(int argc, char *argv[]);
 

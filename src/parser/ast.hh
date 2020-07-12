@@ -7,13 +7,17 @@
 
 namespace parser
 {
+    /**
+     * @brief                       Class representing the AST that will
+     *                              store the operations
+     */
     class t_ast
     {
     public:
         t_ast() = default;
 
         /**
-         * @param tok
+         * @param tok               The token that will represent the AST node
          */
         t_ast(const lexer::t_token& tok);
 
@@ -29,7 +33,7 @@ namespace parser
     };
 
     /**
-     * @param ast
+     * @param ast                   The AST object to print
      */
     void pretty_print_ast(std::shared_ptr<t_ast> ast, int space, int count);
 }
