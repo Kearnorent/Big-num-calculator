@@ -44,11 +44,9 @@ namespace visiter
         if (operation == "+")
             return operations::addition(op1, op2);
         else if (operation == "-")
-            //return std::to_string(num1 - num2);
             return operations::subtraction(op1, op2);
         else if (operation == "*")
-            return std::to_string(num1 * num2);
-            //return operations::multiplication(op1, op2);
+            return operations::multiplication(op1, op2);
         else if (operation == "/")
             return std::to_string(num1 / num2);
             //return operations::division(op1, op2);
