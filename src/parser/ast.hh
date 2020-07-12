@@ -2,6 +2,8 @@
 
 #include <memory>
 #include <iostream>
+#include <vector>
+#include <cmath>
 
 #include "lexer/token.hh"
 
@@ -36,4 +38,9 @@ namespace parser
      * @param ast                   The AST object to print
      */
     void pretty_print_ast(std::shared_ptr<t_ast> ast, int space, int count);
+
+    /**
+     * @param ast                   The AST object to print
+     */
+    void pretty_print_ast2(std::shared_ptr<t_ast> ast, size_t line_len);
 }

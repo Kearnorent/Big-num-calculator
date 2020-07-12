@@ -72,13 +72,16 @@ int main (int argc, char *argv[])
                 continue;
         }
 
+        /// Logging
+        if (options.verbose) {
+            //parser::pretty_print_ast(ast, 0, 5);
+            parser::pretty_print_ast2(ast, 80);
+            /*lexer::pretty_print_tokens(tokens);
+            std::cout << operation << std::endl;*/
+        }
+
         /// AST Visiting
         visiter::visit(ast);
-
-        /// FIXME Logging to delete
-        /*parser::pretty_print_ast(ast, 0, 10);
-        lexer::pretty_print_tokens(tokens);
-        std::cout << operation << std::endl;*/
 
         /// Final logging
         std::string result = ast->get_token().get_value();
