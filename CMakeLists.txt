@@ -1,6 +1,6 @@
 # SETUP
 cmake_minimum_required(VERSION 3.12)
-project(Chess)
+project(calc)
 
 # BUILD OPTIONS
 set(CMAKE_CXX_STANDARD 17)
